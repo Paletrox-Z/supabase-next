@@ -1,3 +1,56 @@
+## Getting Started
+
+First, create a .env.local file and add the 2 variables
+
+```env
+
+# API Key and Store ID can be retrieved from lemon squeezy website
+NEXT_PUBLIC_LEMON_SQUEEZY_API_KEY=<YOUR_API_KEY>
+NEXT_PUBLIC_LEMON_SQUEEZY_STORE_ID=<YOUR_STORE_ID>
+
+```
+
+Then, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Download and Install [ngrok](https://ngrok.com/download) (if not done already)
+
+Create an account with ngrok and navigate to [setup](https://dashboard.ngrok.com/get-started/setup/windows) and select your platform which will show the command to add your token
+
+Once API token is setup, execute the command below:
+
+```bash
+
+ngrok http http://localhost:3001
+
+```
+
+This would generate a publicly accessible endpoint to this Next App. Now copy the app address which looks like "xxxx-xxx-xxx-xxx-xxx.ngrok-free.app" and append "/api/webhooks/checkouts" path.
+
+Example:
+
+```bash
+
+# If your host address is f968-49-206-115-63.ngrok-free.app copy this to a notepad
+# Then update it to f968-49-206-115-63.ngrok-free.app/api/webhooks/checkouts
+
+```
+
+Navigate to [Lemon Squeezy Webhook Dashboard](https://app.lemonsqueezy.com/settings/webhooks) and add the new webhook endpoint (as per example address above: f968-49-206-115-63.ngrok-free.app/api/webhooks/checkouts)
+
+Set a random signing secret as it is mandatory to create a webhook, but its not checked by the app, so it should not be an issue. Check order and subscription related events and save the webhook.
+
+Once saved, please place the order from lemon-squeezy next app or expo app.
+
 <a href="https://demo-nextjs-with-supabase.vercel.app/">
   <img alt="Next.js and Supabase Starter Kit - the fastest way to build apps with Next.js and Supabase" src="https://demo-nextjs-with-supabase.vercel.app/opengraph-image.png">
   <h1 align="center">Next.js and Supabase Starter Kit</h1>
