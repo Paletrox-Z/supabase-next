@@ -21,7 +21,6 @@ type OrderDetailsTableType = {
 export const POST = async (request: Request) => {
   try {
     const orderDetails = await request.json();
-    console.log("**** orderDetails: ", orderDetails);
 
     const variantId =
       orderDetails?.data?.attributes?.first_order_item?.variant_id || 0;
@@ -56,18 +55,18 @@ export const POST = async (request: Request) => {
           orderDetails?.data?.attributes?.user_email || "No Buyer Email",
         interval: productInfo.subscriptionInterval,
         product_type: productInfo.isSubscription ? "Subscription" : "One-Time",
-        updated_at: new Date().toLocaleDateString(),
+        updated_at: new Date().toISOString().toLocaleString(),
         status: orderDetails?.meta?.event_name || "Status Unknown",
       };
-      client.insert(dataToInsert);
+      await client.insert(dataToInsert);
     } else {
       // Update existing order
       const dataToInsert: OrderDetailsTableType = {
         id: orderDetails?.data?.attributes?.order_id,
-        updated_at: new Date().toLocaleDateString(),
+        updated_at: new Date().toISOString().toLocaleString(),
         status: orderDetails?.meta?.event_name || "Status Unknown",
       };
-      client.update(dataToInsert).eq("id", dataToInsert.id);
+      await client.update(dataToInsert).eq("id", dataToInsert.id);
     }
 
     return Response.json({ message: "Success" }, { status: 200 });
