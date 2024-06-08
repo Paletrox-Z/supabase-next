@@ -8,6 +8,11 @@ First, create a .env.local file and add the 2 variables
 NEXT_PUBLIC_LEMON_SQUEEZY_API_KEY=<YOUR_API_KEY>
 NEXT_PUBLIC_LEMON_SQUEEZY_STORE_ID=<YOUR_STORE_ID>
 
+# Supabase DB details to be retrieved from supabase API settings
+NEXT_PUBLIC_SUPABASE_URL=<YOUR_SUPABASE_URL>
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<YOUR_ANON_KEY>
+NEXT_PUBLIC_SUPABASE_ADMIN_KEY=<YOUR_SUPABASE_ADMIN_KEY>
+
 ```
 
 Then, run the development server:
